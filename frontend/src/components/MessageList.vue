@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { toRefs, defineProps } from "vue";
+import { Sender } from "@/types/ChatMessage";
 
 interface Message {
   sender: string;
@@ -19,8 +20,8 @@ const { messages } = toRefs(props);
       v-for="(msg, index) in messages"
       :key="index"
       :class="{
-        'admin-message': msg.sender === 'admin',
-        'client-message': msg.sender === 'client',
+        'admin-message': msg.sender === Sender.ADMIN,
+        'client-message': msg.sender === Sender.CLIENT,
       }"
     >
       {{ msg.text }}

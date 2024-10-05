@@ -12,7 +12,7 @@ const emit = defineEmits<{
   (e: "onSendMessage"): void;
 }>();
 
-const handleInput = (event: Event) => {
+const handleInput = (event: InputEvent) => {
   const target = event.target as HTMLInputElement;
   emit("update:modelValue", target.value);
 };
@@ -31,6 +31,7 @@ const handleMessage = () => {
       :value="modelValue"
       placeholder="type a messsage"
       @input="handleInput"
+      @keydown.enter="handleMessage"
       class="input-chat__input"
     />
     <button class="input-chat__button" @click="handleMessage">Отправить</button>
@@ -49,6 +50,7 @@ const handleMessage = () => {
     flex: 3;
     padding: 10px;
     border: none;
+    outline: none;
     border-radius: 5px;
   }
 
@@ -59,6 +61,7 @@ const handleMessage = () => {
     padding: 10px;
     border-radius: 5px;
     color: #fff;
+    cursor: pointer;
   }
 }
 </style>
